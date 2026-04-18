@@ -80,7 +80,8 @@ DATABASES = {
 # STATIC FILES
 # -------------------------
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_USE_FINDERS = True
 
 # -------------------------
 # DEFAULT PK FIELD (removes warning)
