@@ -93,3 +93,7 @@ ALLOWED_HOSTS = ["*"]  # temp, we’ll tighten later
 
 DEBUG = False
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://package-selector-production.up.railway.app",
+    "https://*.railway.app",
+]
