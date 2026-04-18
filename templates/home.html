@@ -1,0 +1,258 @@
+{% load static %}
+<html>
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f7f7f7;
+      padding: 16px;
+      margin: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+      transition: all 0.2s ease;
+      opacity: 1;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .card.selected {
+      border: 2px solid #000;
+      opacity: 1 !important;
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .fake-date {
+      position:absolute;
+      left:16px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#999;
+      pointer-events:none;
+      font-size:16px;
+    }
+
+    .date-wrapper {
+      position:relative;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div style="text-align:center; margin-bottom:24px;">
+
+    <img 
+      src="{% static 'logo.png' %}"
+      alt="logo"
+      style="height:48px; margin-bottom:10px;"
+    >
+
+    <div style="font-size:20px; font-weight:600;">
+      Quotation Builder
+    </div>
+
+  </div>
+
+  <!-- DATE -->
+  <div style="
+    background:white;
+    border-radius:16px;
+    padding:20px;
+    box-shadow:0 6px 20px rgba(0,0,0,0.05);
+    margin-bottom:20px;
+  ">
+
+    <div style="font-size:16px; color:#999; margin-bottom:6px;">
+      Select your wedding date
+    </div>
+
+    <div class="date-wrapper">
+      <div id="fakeDate" class="fake-date"></div>
+
+      <input 
+        type="date" 
+        id="event_date"
+        value="{{ event_date|date:'Y-m-d' }}"
+        onchange="onDateSelected(); hideFakeDate()"
+        style="
+          width:100%;
+          padding:16px;
+          font-size:16px;
+          border-radius:12px;
+          border:1px solid #eee;
+          background:transparent;
+        "
+      >
+    </div>
+
+  </div>
+
+  <!-- PACKAGES -->
+  <div id="packages" style="display:none;">
+
+    {% for plan_id, plan in packages.items %}
+    <div class="card">
+
+      <div 
+        data-url="/plan/{{ plan_id }}/"
+        data-plan="{{ plan_id }}"
+        onclick="handleCardClick(this)"
+      >
+        <div style="display:flex; justify-content:space-between;">
+          <div>
+            <div style="font-size:20px; font-weight:700;">
+              {{ plan.name }}
+            </div>
+
+            <div style="font-size:14px; color:#777; margin-top:6px;">
+              {{ plan.description }}
+            </div>
+          </div>
+
+          <div class="price">--</div>
+        </div>
+      </div>
+
+      <div id="expand-{{ plan_id }}" style="margin-top:12px;"></div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+
+</div>
+
+<script>
+let selectedPlan = null;
+
+// fake date UI
+window.addEventListener("DOMContentLoaded", function () {
+  const fake = document.getElementById("fakeDate");
+
+  const today = new Date();
+  const future = new Date(today.setMonth(today.getMonth() + 6));
+
+  const options = { day: "numeric", month: "short", year: "numeric" };
+  fake.innerText = future.toLocaleDateString("en-IN", options);
+});
+
+function hideFakeDate() {
+  document.getElementById("fakeDate").style.display = "none";
+}
+
+function onDateSelected() {
+  const date = document.getElementById("event_date").value;
+  if (!date) return;
+
+  document.getElementById("packages").style.display = "block";
+
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const trigger = card.querySelector("[data-url]");
+    const url = trigger.getAttribute("data-url") + "?event_date=" + date;
+
+    fetch(url)
+      .then(res => res.text())
+      .then(html => {
+        const temp = document.createElement("div");
+        temp.innerHTML = html;
+
+        const price = temp.querySelector(".final-price");
+        if (price) {
+          card.querySelector(".price").innerText = price.innerText.trim();
+        }
+      });
+  });
+
+  // reopen selected plan
+  if (selectedPlan) {
+    const active = document.querySelector(".card.selected [id^='expand-']");
+    if (active) {
+      fetch(selectedPlan + "?event_date=" + date)
+        .then(res => res.text())
+        .then(html => {
+          active.innerHTML = html;
+        });
+    }
+  }
+}
+
+// click handler
+function handleCardClick(el) {
+  const parentCard = el.closest(".card");
+  const expand = parentCard.querySelector("[id^='expand-']");
+  const url = el.getAttribute("data-url");
+
+  if (parentCard.classList.contains("selected")) {
+    parentCard.classList.remove("selected");
+    parentCard.style.opacity = "1";
+    expand.innerHTML = "";
+    selectedPlan = null;
+    return;
+  }
+
+  selectedPlan = url;
+
+  document.querySelectorAll(".card").forEach(card => {
+    card.classList.remove("selected");
+    card.style.opacity = "0.5";
+    card.querySelector("[id^='expand-']").innerHTML = "";
+  });
+
+  parentCard.classList.add("selected");
+  parentCard.style.opacity = "1";
+
+  fetch(url + "?event_date=" + document.getElementById("event_date").value)
+    .then(res => res.text())
+    .then(html => {
+      expand.innerHTML = html;
+    });
+}
+
+// 🔥 AUTO RESTORE STATE
+window.onload = function () {
+  const dateInput = document.getElementById("event_date");
+
+  if (dateInput && dateInput.value) {
+    hideFakeDate();
+    onDateSelected();
+
+    const lastPlan = "{{ last_plan|default:'' }}";
+
+    if (lastPlan) {
+      setTimeout(() => {
+        const el = document.querySelector(`[data-plan="${lastPlan}"]`);
+        if (el) el.click();
+      }, 400);
+    }
+  }
+};
+</script>
+
+</body>
+</html>

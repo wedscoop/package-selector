@@ -1,0 +1,190 @@
+<div style="
+  background:#ffffff;
+  padding:22px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  position:relative;
+  border:1px solid #eee;
+">
+
+  <!-- HIDDEN PRICE -->
+  <div class="final-price" style="display:none;">
+    ₹{{ price }}
+  </div>
+
+  <div style="{% if force_capture %}filter: blur(6px); pointer-events:none;{% endif %}">
+
+    {% if event_date %}
+    <div style="font-size:14px; color:#777; margin-bottom:10px;">
+      for {{ event_date|date:"d M, Y" }}
+    </div>
+    {% endif %}
+
+    <!-- URGENCY -->
+    <div style="
+      background:#fff8e1;
+      padding:14px;
+      border-radius:12px;
+      font-size:14px;
+      color:#8a6d3b;
+      margin-bottom:18px;
+    ">
+      Prices may increase as dates get booked
+    </div>
+
+    <!-- SCHEDULE -->
+    <div style="font-size:12px; color:#999; margin-bottom:10px;">
+      WEDDING COVERAGE
+    </div>
+
+    {% for d in plan.days %}
+    <div style="padding:14px; background:#fafafa; border-radius:12px; margin-bottom:10px;">
+      
+      <div style="font-weight:700; font-size:15px;">
+        {{ d.day }}
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;">
+        {% for e in d.events %}
+        <span style="background:#eee; padding:5px 8px; border-radius:8px; font-size:12px;">
+          {{ e }}
+        </span>
+        {% endfor %}
+      </div>
+
+      {% if d.team %}
+      <div style="font-size:12px; color:#555; margin-top:8px;">
+        {% if d.team.photographers %}
+          {{ d.team.photographers }} Photographer{% if d.team.photographers > 1 %}s{% endif %}
+        {% endif %}
+
+        {% if d.team.cinematographers %}
+          • {{ d.team.cinematographers }} Cinematographer{% if d.team.cinematographers > 1 %}s{% endif %}
+        {% endif %}
+
+        {% if d.team.drone %}
+          • Drone
+        {% endif %}
+      </div>
+      {% endif %}
+
+    </div>
+    {% endfor %}
+
+    <!-- DELIVERABLES -->
+    {% if plan.deliverables %}
+    <div style="margin-top:18px;">
+      <div style="font-size:12px; color:#999; margin-bottom:8px;">
+        DELIVERABLES
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:8px;">
+        {% for item in plan.deliverables %}
+        <span style="background:#f1f1f1; padding:6px 10px; border-radius:8px;">
+          {{ item }}
+        </span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- CALENDAR -->
+    <div style="margin-top:20px;">
+      <div onclick="this.nextElementSibling.style.display =
+        this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'"
+        style="font-size:14px; cursor:pointer; text-align:center; color:#555; padding:8px;">
+        View price trends
+      </div>
+
+      <div style="display:none; grid-template-columns: repeat(4, 1fr); gap:8px; margin-top:10px;">
+        {% for d in calendar %}
+        <div style="
+          padding:10px;
+          border-radius:10px;
+          text-align:center;
+          font-size:11px;
+
+          {% if event_date and d.date == event_date %}
+            border:2px solid #000;
+            background:#111;
+            color:#fff;
+          {% else %}
+            border:1px solid #eee;
+            opacity:0.8;
+          {% endif %}
+        ">
+          <div>{{ d.date|date:"d M" }}</div>
+          <div style="font-weight:700; margin-top:3px;">
+            ₹{{ d.price_display }}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- HARD GATE -->
+  {% if force_capture %}
+  <div style="
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.97);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    border-radius:16px;
+  ">
+
+    <h3 style="margin-bottom:10px;">Unlock Full Details</h3>
+
+    <form method="post" action="/capture-phone/" style="width:100%;">
+      {% csrf_token %}
+      <input type="hidden" name="plan_id" value="{{ plan_id }}">
+	  <input type="hidden" name="event_date" value="{{ event_date|date:'Y-m-d' }}">
+      <input name="name" placeholder="Your Name" required style="padding:14px; width:100%; margin-bottom:10px; border-radius:10px; border:1px solid #ddd;" />
+      <input name="phone" placeholder="Your Phone" required style="padding:14px; width:100%; margin-bottom:10px; border-radius:10px; border:1px solid #ddd;" />
+
+      <button style="width:100%; padding:14px; background:#000; color:#fff; border:none; border-radius:10px;">
+        Continue →
+      </button>
+    </form>
+
+  </div>
+
+  {% else %}
+
+  {% if not user %}
+  <form method="post" action="/capture-phone/" style="margin-top:18px;">
+    {% csrf_token %}
+    <input type="hidden" name="plan_id" value="{{ plan_id }}">
+    <input type="hidden" name="event_date" value="{{ event_date|date:'Y-m-d' }}">
+
+    <input name="name" placeholder="Your Name" required style="padding:14px; width:100%; margin-bottom:10px; border-radius:10px; border:1px solid #ddd;" />
+    <input name="phone" placeholder="Your Phone" required style="padding:14px; width:100%; margin-bottom:10px; border-radius:10px; border:1px solid #ddd;" />
+
+    <button style="width:100%; padding:14px; background:#000; color:#fff; border:none; border-radius:10px;">
+      Save & Continue →
+    </button>
+  </form>
+
+  {% else %}
+  <a href="/request-booking/?plan_id={{ plan_id }}&event_date={{ event_date }}&price={{ price }}">
+    <button style="width:100%; padding:14px; margin-top:18px; background:#25D366; color:#fff; border:none; border-radius:10px;">
+      Request Booking →
+    </button>
+  </a>
+  {% endif %}
+
+  {% endif %}
+
+  <div style="margin-top:14px; font-size:11px; color:#999; text-align:center;">
+    Prices vary based on demand and booking date
+  </div>
+
+</div>
