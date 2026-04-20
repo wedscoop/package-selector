@@ -68,7 +68,7 @@
     <img 
       src="{% static 'logo.png' %}"
       alt="logo"
-      style="height:48px; margin-bottom:10px;"
+      style="height:40px; margin-bottom:10px;"
     >
 
     <div style="font-size:20px; font-weight:600;">
@@ -252,6 +252,81 @@ window.onload = function () {
     }
   }
 };
+
+function cleanPhone(input) {
+  return input.replace(/\D/g, "");
+}
+
+function showError(input, el, msg) {
+  input.style.borderColor = "red";
+  el.innerText = msg;
+  el.style.display = "block";
+}
+
+function clearError(input, el) {
+  input.style.borderColor = "#ddd";
+  el.innerText = "";
+  el.style.display = "none";
+}
+
+function getErrorEl(input) {
+  return input.parentElement.querySelector(".error-text");
+}
+
+function validateNameField(input) {
+  const el = getErrorEl(input);
+  const v = input.value.trim();
+
+  if (v.length < 2) return showError(input, el, "Enter valid name");
+  if (!/^[a-zA-Z\s]+$/.test(v)) return showError(input, el, "Only letters allowed");
+
+  clearError(input, el);
+  return true;
+}
+
+function validatePhoneField(input) {
+  const el = getErrorEl(input);
+  let v = cleanPhone(input.value);
+
+  if (v.startsWith("91") && v.length > 10) v = v.slice(-10);
+  if (v.length !== 10) return showError(input, el, "Enter 10-digit number");
+
+  clearError(input, el);
+  return true;
+}
+
+function validateForm(form) {
+  const name = form.querySelector("input[name='name']");
+  const phone = form.querySelector("input[name='phone']");
+
+  const ok1 = validateNameField(name);
+  const ok2 = validatePhoneField(phone);
+
+  if (!ok1 || !ok2) return false;
+
+  phone.value = cleanPhone(phone.value).slice(-10);
+  return true;
+}
+
+document.addEventListener("submit", function(e) {
+  const form = e.target;
+
+  if (!form.matches("form[action='/capture-phone/']")) return;
+
+  const name = form.querySelector("input[name='name']");
+  const phone = form.querySelector("input[name='phone']");
+
+  const ok1 = validateNameField(name);
+  const ok2 = validatePhoneField(phone);
+
+  if (!ok1 || !ok2) {
+    e.preventDefault(); // ✅ THIS is the real fix
+    return;
+  }
+
+  // normalize phone
+  phone.value = cleanPhone(phone.value).slice(-10);
+});
 </script>
 
 </body>

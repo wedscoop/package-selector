@@ -2,6 +2,7 @@ import uuid
 import yaml
 from pathlib import Path
 from .models import Event
+from datetime import date, timedelta
 
 
 # -------------------------
@@ -112,12 +113,14 @@ def get_demand_multiplier(event_date):
     return 1 + (0.10 * count)
 
 
-def get_price_calendar(base_price, days=30):
-    today = date.today()
+def get_price_calendar(base_price, start_date=None, days=30):
+    if not start_date:
+        start_date = date.today()
+
     calendar = []
 
     for i in range(days):
-        d = today + timedelta(days=i)
+        d = start_date + timedelta(days=i)
 
         multiplier = get_demand_multiplier(d)
         price = int(base_price * multiplier)
@@ -126,12 +129,13 @@ def get_price_calendar(base_price, days=30):
             "date": d,
             "price": price,
             "price_display": format_price(price),  # 👈 ADD THIS
-            "bookings": int((multiplier - 1) / 0.1)
+            "bookings": int((multiplier - 1) / 0.1),
+            "is_surge": multiplier > 1
         })
 
     return calendar
 
 def format_price(p):
     if p >= 100000:
-        return f"{round(p/100000,1)}L"
+        return f"{round(p/100000,2)}L"
     return str(p)

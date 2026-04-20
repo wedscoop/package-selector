@@ -99,15 +99,24 @@ def view_plan(request, plan_id):
 
     def format_price(p):
         if p >= 100000:
-            return f"{round(p/100000,1)}L"
+            return f"{round(p/100000,2)}L"
         return str(p)
 
     price = format_price(price_value)
+    #price = price_value
 
     # -------------------------
     # CALENDAR
     # -------------------------
-    calendar = get_price_calendar(plan["price"])
+    event_date_obj = None
+
+    if event_date:
+        event_date_obj = datetime.strptime(event_date, "%Y-%m-%d").date()
+
+    calendar = get_price_calendar(
+        plan["price"],
+        start_date=event_date_obj
+    )
     min_price = min([d["price"] for d in calendar]) if calendar else None
 
     # -------------------------

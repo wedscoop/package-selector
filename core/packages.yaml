@@ -1,7 +1,7 @@
 packages:
   2_day_dest:
     name: "Destination Wedding 2 Days"
-    price: 120000
+    price: 180000
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
@@ -9,12 +9,14 @@ packages:
         team:
             photographers: 2
             cinematographers: 2
+            drone: 1
 
       - day: "Day 2"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 3
+            photographers: 2
             cinematographers: 2
+            drone: 1
     
     deliverables:
         - "Edited Photos"
@@ -25,72 +27,168 @@ packages:
         
   2_day_lite:
     name: "2 Day Wedding"
-    price: 100000
+    price: 120000
     description: "Wedding Day + 1 Event"
     days:
       - day: "Day 1"
         events: ["Sangeet"]
+        team:
+            photographers: 2
+            cinematographers: 2
       - day: "Day 2"
         events: ["Haldi", "Wedding"]
+        team:
+            photographers: 2
+            cinematographers: 2
+
+    deliverables:
+        - "Edited Photos"
+        - "Raw Photos"
+        - "2 Reels"
+        - "Cinematic Teaser"
+        - "Cinematic Wedding Film"            
 
   2_day_full:
-    name: "2 Day Wedding (E)"
-    price: 120000
+    name: "2 Day Wedding ++"
+    price: 144000
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
         events: ["Mehndi", "Sangeet"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 2"
         events: ["Haldi", "Wedding"]
+        team:
+            photographers: 2
+            cinematographers: 2
+
+    deliverables:
+        - "Edited Photos"
+        - "Raw Photos"
+        - "2 Reels"
+        - "Cinematic Teaser"
+        - "Cinematic Wedding Film"            
 
   3_day_lite:
     name: "3 Day Wedding"
-    price: 140000
+    price: 168000
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
         events: ["Mehndi"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 2"
         events: ["Sangeet"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 3"
         events: ["Haldi", "Wedding"]
+        team:
+            photographers: 2
+            cinematographers: 2 
+
+    deliverables:
+        - "Edited Photos"
+        - "Raw Photos"
+        - "2 Reels"
+        - "Cinematic Teaser"
+        - "Cinematic Wedding Film"            
         
   3_day_full:
-    name: "3 Day Wedding (E)"
-    price: 160000
+    name: "3 Day Wedding ++"
+    price: 192000
     description: "Wedding Day + 3 Events"
     days:
       - day: "Day 1"
         events: ["Cocktail"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 2"
         events: ["Mehndi","Sangeet"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 3"
         events: ["Haldi", "Wedding"]
+        team:
+            photographers: 2
+            cinematographers: 2 
+
+    deliverables:
+        - "Edited Photos"
+        - "Raw Photos"
+        - "2 Reels"
+        - "Cinematic Teaser"
+        - "Cinematic Wedding Film"            
    
   4_day_lite:
     name: "4 Day Wedding"
-    price: 180000
+    price: 216000
     description: "Wedding Day + 3 Events"
     days:
       - day: "Day 1"
         events: ["Mehndi"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 2"
         events: ["Cocktail"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 3"
         events: ["Sangeet"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 4"
         events: ["Haldi", "Wedding"]
+        team:
+            photographers: 2
+            cinematographers: 2 
+
+    deliverables:
+        - "Edited Photos"
+        - "Raw Photos"
+        - "2 Reels"
+        - "Cinematic Teaser"
+        - "Cinematic Wedding Film"            
    
   4_day_full:
-    name: "4 Day Wedding (E)"
-    price: 200000
+    name: "4 Day Wedding ++"
+    price: 240000
     description: "Wedding Day + 4 Events"
     days:
       - day: "Day 1"
         events: ["Mehndi"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 2"
         events: ["Cocktail"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 3"
         events: ["Welcome Lunch", "Sangeet"]
+        team:
+            photographers: 2
+            cinematographers: 2        
       - day: "Day 4"
         events: ["Haldi", "Wedding"]
+        team:
+            photographers: 2
+            cinematographers: 2 
+
+    deliverables:
+        - "Edited Photos"
+        - "Raw Photos"
+        - "2 Reels"
+        - "Cinematic Teaser"
+        - "Cinematic Wedding Film"            
