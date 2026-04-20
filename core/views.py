@@ -5,6 +5,7 @@ from .logic import get_package, create_session_id, get_most_interested_plan
 from .logic import get_all_packages
 from .logic import get_price_calendar
 import resend
+import os
     
 
 def get_or_create_session(request):
