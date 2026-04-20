@@ -97,4 +97,6 @@ DEBUG = False
 CSRF_TRUSTED_ORIGINS = [
     "https://package-selector-production.up.railway.app",
     "https://*.railway.app",
+    "https://app.wedscoop.com",
+    "https://*.wedscoop.com",
 ]
