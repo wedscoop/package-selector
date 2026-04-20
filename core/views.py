@@ -224,4 +224,4 @@ def request_booking(request):
 
     log_event(session, "booking_requested")
 
-    return redirect(f"https://wa.me/91{user.phone}?text={encoded}")
+    return redirect(f"https://wa.me/91{7982921411}?text={encoded}")
