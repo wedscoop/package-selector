@@ -4,6 +4,7 @@ from .models import Session, Event, User
 from .logic import get_package, create_session_id, get_most_interested_plan
 from .logic import get_all_packages
 from .logic import get_price_calendar
+import resend
     
 
 def get_or_create_session(request):
@@ -151,6 +152,28 @@ def view_plan(request, plan_id):
     })
 
 
+
+def send_lead_email(name, phone, plan_id, event_date):
+    try:
+        resend.api_key = os.environ.get("RESEND_API_KEY")
+
+        resend.Emails.send({
+            "from": "Wedscoop <onboarding@resend.dev>",
+            "to": ["your-email@gmail.com"],
+            "subject": "🔥 New Lead - Wedscoop",
+            "html": f"""
+            <h2>New Lead Captured</h2>
+            <p><b>Name:</b> {name}</p>
+            <p><b>Phone:</b> {phone}</p>
+            <p><b>Plan:</b> {plan_id}</p>
+            <p><b>Date:</b> {event_date}</p>
+            """
+        })
+
+    except Exception as e:
+        print("Resend failed:", e)
+    
+
 # -------------------------
 # LEAD CAPTURE (NO REDIRECT)
 # -------------------------
@@ -178,7 +201,9 @@ def capture_phone(request):
     event_date = request.POST.get("event_date")
     request.session["event_date"] = event_date
     log_event(session, "lead_captured")
-
+    
+    send_lead_email(name, phone, plan_id, event_date)
+    
     return redirect("/")  # back to home
 
 
