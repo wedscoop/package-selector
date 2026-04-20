@@ -157,10 +157,10 @@ def view_plan(request, plan_id):
 def send_lead_email(name, phone, plan_id, event_date):
     try:
         resend.api_key = os.environ.get("RESEND_API_KEY")
-        print("KEY:", resend.api_key)
+        
         resend.Emails.send({
             "from": "Wedscoop <onboarding@resend.dev>",
-            "to": ["your-email@gmail.com"],
+            "to": ["contact.wedscoop@gmail.com"],
             "subject": "🔥 New Lead - Wedscoop",
             "html": f"""
             <h2>New Lead Captured</h2>
