@@ -1,33 +1,33 @@
 packages:
   2_day_dest:
     name: "Destination Wedding 2 Days"
-    price: 180000
+    price: 200000
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
         events: ["Mehndi", "Sangeet"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2
             drone: 1
 
       - day: "Day 2"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2
             drone: 1
     
     deliverables:
-        - "Edited Photos"
+        - "1000+ Edited Photos"
         - "Raw Photos"
         - "2 Reels"
-        - "Cinematic Teaser"
-        - "Cinematic Wedding Film"
+        - "Cinematic Teaser (3-5 Min)"
+        - "Cinematic Wedding Film (20-30 Min)"
         
   2_day_lite:
     name: "2 Day Wedding"
-    price: 120000
+    price: 132000
     description: "Wedding Day + 1 Event"
     days:
       - day: "Day 1"
@@ -38,19 +38,19 @@ packages:
       - day: "Day 2"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2
 
     deliverables:
-        - "Edited Photos"
+        - "1000+ Edited Photos"
         - "Raw Photos"
         - "2 Reels"
-        - "Cinematic Teaser"
-        - "Cinematic Wedding Film"            
-
+        - "Cinematic Teaser (3-5 Min)"
+        - "Cinematic Wedding Film (20-30 Min)"
+        
   2_day_full:
     name: "2 Day Wedding ++"
-    price: 144000
+    price: 156000
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
@@ -61,19 +61,19 @@ packages:
       - day: "Day 2"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2
 
     deliverables:
-        - "Edited Photos"
+        - "1000+ Edited Photos"
         - "Raw Photos"
         - "2 Reels"
-        - "Cinematic Teaser"
-        - "Cinematic Wedding Film"            
+        - "Cinematic Teaser (3-5 Min)"
+        - "Cinematic Wedding Film (20-30 Min)"            
 
   3_day_lite:
     name: "3 Day Wedding"
-    price: 168000
+    price: 180000
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
@@ -89,19 +89,19 @@ packages:
       - day: "Day 3"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "Edited Photos"
+        - "1000+ Edited Photos"
         - "Raw Photos"
         - "2 Reels"
-        - "Cinematic Teaser"
-        - "Cinematic Wedding Film"            
+        - "Cinematic Teaser (3-5 Min)"
+        - "Cinematic Wedding Film (20-30 Min)"            
         
   3_day_full:
     name: "3 Day Wedding ++"
-    price: 192000
+    price: 204000
     description: "Wedding Day + 3 Events"
     days:
       - day: "Day 1"
@@ -117,19 +117,19 @@ packages:
       - day: "Day 3"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "Edited Photos"
+        - "1000+ Edited Photos"
         - "Raw Photos"
         - "2 Reels"
-        - "Cinematic Teaser"
-        - "Cinematic Wedding Film"            
+        - "Cinematic Teaser (3-5 Min)"
+        - "Cinematic Wedding Film (20-30 Min)"            
    
   4_day_lite:
     name: "4 Day Wedding"
-    price: 216000
+    price: 228000
     description: "Wedding Day + 3 Events"
     days:
       - day: "Day 1"
@@ -150,19 +150,19 @@ packages:
       - day: "Day 4"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "Edited Photos"
+        - "1000+ Edited Photos"
         - "Raw Photos"
         - "2 Reels"
-        - "Cinematic Teaser"
-        - "Cinematic Wedding Film"            
+        - "Cinematic Teaser (3-5 Min)"
+        - "Cinematic Wedding Film (20-30 Min)"            
    
   4_day_full:
     name: "4 Day Wedding ++"
-    price: 240000
+    price: 252000
     description: "Wedding Day + 4 Events"
     days:
       - day: "Day 1"
@@ -183,12 +183,12 @@ packages:
       - day: "Day 4"
         events: ["Haldi", "Wedding"]
         team:
-            photographers: 2
+            photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "Edited Photos"
+        - "1000+ Edited Photos"
         - "Raw Photos"
         - "2 Reels"
-        - "Cinematic Teaser"
-        - "Cinematic Wedding Film"            
+        - "Cinematic Teaser (3-5 Min)"
+        - "Cinematic Wedding Film (20-30 Min)"            

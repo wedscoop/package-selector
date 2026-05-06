@@ -1,10 +1,10 @@
 <div style="
   background:#ffffff;
-  padding:22px;
   border-radius:16px;
   box-shadow:0 8px 25px rgba(0,0,0,0.08);
   position:relative;
   border:1px solid #eee;
+  overflow:hidden;
 ">
 
   <!-- HIDDEN PRICE -->
@@ -12,20 +12,17 @@
     ₹{{ price }}
   </div>
 
-  <div style="{% if force_capture %}filter: blur(6px); pointer-events:none;{% endif %}">
-
+<div style="padding:22px; {% if force_capture %}filter: blur(6px); pointer-events:none;{% endif %}">
     {% if event_date %}
     <div style="font-size:14px; color:#777; margin-bottom:10px;">
       for {{ event_date|date:"d M, Y" }}
     </div>
     {% endif %}
 
-    <!-- URGENCY -->
     <div style="background:#fff8e1; padding:14px; border-radius:12px; font-size:14px; color:#8a6d3b; margin-bottom:18px;">
       Prices may increase as dates get booked
     </div>
 
-    <!-- SCHEDULE -->
     <div style="font-size:12px; color:#999; margin-bottom:10px;">
       WEDDING COVERAGE
     </div>
@@ -53,7 +50,7 @@
         {% if d.team.cinematographers %}
           • {{ d.team.cinematographers }} Cinematographer{% if d.team.cinematographers > 1 %}s{% endif %}
         {% endif %}
-		{% if d.team.drone %}
+        {% if d.team.drone %}
           • {{ d.team.drone }} Drone{% if d.team.drone > 1 %}s{% endif %}
         {% endif %}
       </div>
@@ -61,7 +58,6 @@
     </div>
     {% endfor %}
 
-    <!-- DELIVERABLES -->
     {% if plan.deliverables %}
     <div style="margin-top:18px;">
       <div style="font-size:12px; color:#999; margin-bottom:8px;">
@@ -77,68 +73,111 @@
       </div>
     </div>
     {% endif %}
+</div>
 
-  </div>
+{% if force_capture %}
 
-  <!-- HARD GATE -->
-  {% if force_capture %}
-  <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.97); display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px; border-radius:16px;">
+<div style="
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(255,255,255,0.97);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-radius:16px;
+  padding:20px;
+  box-sizing: border-box;
+">
 
-    <h3 style="margin-bottom:10px;">Unlock Full Details</h3>
+  <div style="
+    width:100%;
+    max-width:320px;
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    text-align:center;
+    box-sizing: border-box;
+  ">
 
-    <form method="post" action="/capture-phone/" style="width:100%;">
+    <h3 style="margin-bottom:12px;">Unlock Full Details</h3>
+
+    <form method="post" action="/capture-phone/" 
+      style="width:100%; display:flex; flex-direction:column; align-items:stretch;">
+      
       {% csrf_token %}
       <input type="hidden" name="plan_id" value="{{ plan_id }}">
       <input type="hidden" name="event_date" value="{{ event_date|date:'Y-m-d' }}">
 
-      <input name="name" placeholder="Your Name"
-        oninput="validateNameField(this)"
-        style="padding:14px; width:100%; margin-bottom:4px; border-radius:10px; border:1px solid #ddd;" />
-      <div class="error-text" style="font-size:12px; color:red; display:none;"></div>
+      <div style="margin-bottom:12px;">
+        <input name="name" placeholder="Your Name"
+          oninput="validateNameField(this)"
+          style="padding:14px; width:100%; display:block; box-sizing:border-box; border-radius:10px; border:1px solid #ddd;" />
+        <div class="error-text" style="font-size:12px; color:red; display:none; margin-top:4px;"></div>
+      </div>
 
-      <input name="phone" type="tel" inputmode="numeric" placeholder="Your Phone"
-        oninput="validatePhoneField(this)"
-        style="padding:14px; width:100%; margin-top:8px; margin-bottom:4px; border-radius:10px; border:1px solid #ddd;" />
-      <div class="error-text" style="font-size:12px; color:red; display:none;"></div>
+      <div style="margin-bottom:12px;">
+        <input name="phone" type="tel" inputmode="numeric" placeholder="Your Phone"
+          oninput="validatePhoneField(this)"
+          style="padding:14px; width:100%; display:block; box-sizing:border-box; border-radius:10px; border:1px solid #ddd;" />
+        <div class="error-text" style="font-size:12px; color:red; display:none; margin-top:4px;"></div>
+      </div>
 
-      <button style="width:100%; padding:14px; background:#000; color:#fff; border:none; border-radius:10px; margin-top:10px;">
+      <button style="
+        width:100%;
+        display:block;
+        box-sizing:border-box;
+        padding:14px;
+        background:#000;
+        color:#fff;
+        border:none;
+        border-radius:10px;
+        margin-top:6px;
+        cursor: pointer;
+      ">
         Continue →
       </button>
+
     </form>
 
   </div>
+</div>
 
-  {% else %}
-  {% if not user %}
-  <form method="post" action="/capture-phone/" style="margin-top:18px;">
-    {% csrf_token %}
-    <input type="hidden" name="plan_id" value="{{ plan_id }}">
-    <input type="hidden" name="event_date" value="{{ event_date|date:'Y-m-d' }}">
+{% else %}
 
-    <input name="name" placeholder="Your Name"
-      oninput="validateNameField(this)"
-      style="padding:14px; width:100%; margin-bottom:4px; border-radius:10px; border:1px solid #ddd;" />
-    <div class="error-text" style="font-size:12px; color:red; display:none;"></div>
+<div style="padding: 0 22px 22px 22px;"> <!-- Added wrapper padding to match top container -->
+{% if not user %}
+<form method="post" action="/capture-phone/" style="margin-top:0px;">
+  {% csrf_token %}
+  <input type="hidden" name="plan_id" value="{{ plan_id }}">
+  <input type="hidden" name="event_date" value="{{ event_date|date:'Y-m-d' }}">
 
-    <input name="phone" type="tel" inputmode="numeric" placeholder="Your Phone"
-      oninput="validatePhoneField(this)"
-      style="padding:14px; width:100%; margin-top:8px; margin-bottom:4px; border-radius:10px; border:1px solid #ddd;" />
-    <div class="error-text" style="font-size:12px; color:red; display:none;"></div>
+  <input name="name" placeholder="Your Name"
+    oninput="validateNameField(this)"
+    style="padding:14px; width:100%; margin-bottom:4px; border-radius:10px; border:1px solid #ddd; box-sizing:border-box;" />
+  <div class="error-text" style="font-size:12px; color:red; display:none;"></div>
 
-    <button style="width:100%; padding:14px; background:#000; color:#fff; border:none; border-radius:10px; margin-top:10px;">
-      Save & Continue →
-    </button>
-  </form>
+  <input name="phone" type="tel" inputmode="numeric" placeholder="Your Phone"
+    oninput="validatePhoneField(this)"
+    style="padding:14px; width:100%; margin-top:8px; margin-bottom:4px; border-radius:10px; border:1px solid #ddd; box-sizing:border-box;" />
+  <div class="error-text" style="font-size:12px; color:red; display:none;"></div>
 
-  {% else %}
-  <a href="/request-booking/?plan_id={{ plan_id }}&event_date={{ event_date }}&price={{ price }}">
-    <button style="width:100%; padding:14px; margin-top:18px; background:#25D366; color:#fff; border:none; border-radius:10px;">
-      Request Booking →
-    </button>
-  </a>
-  {% endif %}
-  
-  <!-- ✅ CALENDAR ALWAYS VISIBLE -->
+  <button style="width:100%; padding:14px; background:#000; color:#fff; border:none; border-radius:10px; margin-top:10px; box-sizing:border-box; cursor:pointer;">
+    Save & Continue →
+  </button>
+</form>
+
+{% else %}
+<a href="/request-booking/?plan_id={{ plan_id }}&event_date={{ event_date }}&price={{ price }}" style="text-decoration:none;">
+  <button style="width:100%; padding:14px; margin-top:0px; background:#25D366; color:#fff; border:none; border-radius:10px; box-sizing:border-box; cursor:pointer;">
+    Request Booking →
+  </button>
+</a>
+{% endif %}
+
 <div style="margin-top:20px;">
   <div onclick="this.nextElementSibling.style.display =
     this.nextElementSibling.style.display === 'none' ? 'grid' : 'none'"
@@ -148,25 +187,14 @@
 
   <div style="display:none; grid-template-columns: repeat(4, 1fr); gap:8px; margin-top:10px;">
     {% for d in calendar %}
-    <div style="
-      padding:10px;
-      border-radius:10px;
-      text-align:center;
-      font-size:11px;
-
+    <div style="padding:10px; border-radius:10px; text-align:center; font-size:11px; box-sizing:border-box;
       {% if event_date and d.date == event_date %}
-        border:2px solid #000;
-        background:#111;
-        color:#fff;
+        border:2px solid #000; background:#111; color:#fff;
       {% else %}
-        border:1px solid #eee;
-        opacity:0.8;
-      {% endif %}
-    ">
+        border:1px solid #eee; opacity:0.8;
+      {% endif %}">
       <div>{{ d.date|date:"d M" }}</div>
-      <div style="font-weight:700; margin-top:3px; {% if d.is_surge %}
-    color:#d32f2f;
-  {% endif %}">
+      <div style="font-weight:700; margin-top:3px; {% if d.is_surge %}color:#d32f2f;{% endif %}">
         ₹{{ d.price_display }}
       </div>
     </div>
@@ -174,11 +202,11 @@
   </div>
 </div>
 
-  {% endif %}
-
-  <div style="margin-top:14px; font-size:11px; color:#999; text-align:center;">
-    Prices vary based on demand and booking date
-  </div>
-
+<div style="margin-top:14px; font-size:11px; color:#999; text-align:center;">
+  Prices vary based on demand and booking date
+</div>
 </div>
 
+{% endif %}
+
+</div>
