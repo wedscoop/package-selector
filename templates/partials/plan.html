@@ -11,7 +11,9 @@
   <div class="final-price" style="display:none;">
     ₹{{ price }}
   </div>
-
+<div class="surge-status" style="display:none;">
+  {% if is_surge %}true{% else %}false{% endif %}
+</div>
 <div style="padding:22px; {% if force_capture %}filter: blur(6px); pointer-events:none;{% endif %}">
     {% if event_date %}
     <div style="font-size:14px; color:#777; margin-bottom:10px;">
@@ -189,14 +191,15 @@
     {% for d in calendar %}
     <div style="padding:10px; border-radius:10px; text-align:center; font-size:11px; box-sizing:border-box;
       {% if event_date and d.date == event_date %}
-        border:2px solid #000; background:#111; color:#fff;
+        border:2px solid #000; background:#EEEEEE; color:#111;
       {% else %}
         border:1px solid #eee; opacity:0.8;
       {% endif %}">
       <div>{{ d.date|date:"d M" }}</div>
       <div style="font-weight:700; margin-top:3px; {% if d.is_surge %}color:#d32f2f;{% endif %}">
-        ₹{{ d.price_display }}
+        ₹{{ d.price_display }} {% if d.is_surge %}🔥{% endif %}
       </div>
+	  
     </div>
     {% endfor %}
   </div>

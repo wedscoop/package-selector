@@ -115,9 +115,13 @@ def view_plan(request, plan_id):
     if event_date:
         event_date_obj = datetime.strptime(event_date, "%Y-%m-%d").date()
 
+    from datetime import timedelta
+
+    calendar_start = event_date_obj - timedelta(days=7) if event_date_obj else None
+
     calendar = get_price_calendar(
         plan["price"],
-        start_date=event_date_obj
+        start_date=calendar_start
     )
     min_price = min([d["price"] for d in calendar]) if calendar else None
 
@@ -149,7 +153,8 @@ def view_plan(request, plan_id):
         "min_price": min_price,
         "repeat_count": current_count,
         "user": session.user,
-        "force_capture": force_capture
+        "force_capture": force_capture,
+        "is_surge": multiplier > 1
     })
 
 
