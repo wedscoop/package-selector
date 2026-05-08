@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = '/static/'
 SECRET_KEY = "dev-key"
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
 STATICFILES_DIRS = [
