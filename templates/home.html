@@ -55,6 +55,28 @@
     .date-wrapper {
       position:relative;
     }
+	
+	@keyframes pricePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 0.75;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.price-updated {
+  animation: pricePulse 0.5s ease;
+}
+
   </style>
 </head>
 
@@ -196,7 +218,19 @@ function onDateSelected() {
 const demand = temp.querySelector(".surge-status");
 
 if (price) {
-  card.querySelector(".price").innerText = price.innerText.trim();
+  const priceEl = card.querySelector(".price");
+
+  // update value
+  priceEl.innerText = price.innerText.trim();
+
+  // restart animation
+  priceEl.classList.remove("price-updated");
+
+  // force reflow
+  void priceEl.offsetWidth;
+
+  // animate
+  priceEl.classList.add("price-updated");
 }
 
 const label = card.querySelector(".demand-label");
