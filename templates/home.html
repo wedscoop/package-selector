@@ -232,12 +232,20 @@ function handleCardClick(el) {
   const url = el.getAttribute("data-url");
 
   if (parentCard.classList.contains("selected")) {
-    parentCard.classList.remove("selected");
-    parentCard.style.opacity = "1";
-    expand.innerHTML = "";
-    selectedPlan = null;
-    return;
-  }
+
+  // close expanded content only
+  expand.innerHTML = "";
+
+  // restore opacity of all cards
+  document.querySelectorAll(".card").forEach(card => {
+    card.style.opacity = "1";
+  });
+
+  // keep selected state
+  selectedPlan = url;
+
+  return;
+}
 
   selectedPlan = url;
 
