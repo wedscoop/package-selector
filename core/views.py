@@ -61,7 +61,7 @@ def home(request):
     response = render(request, "home.html", {
         "user": user,
         "is_returning": is_returning,
-        "last_plan": last_plan,
+        "expand_once": request.session.pop("expand_once", ""),
         "event_date": event_date,
         "packages": packages,
     })
@@ -203,7 +203,7 @@ def capture_phone(request):
     session.save()
 
     # ✅ store last viewed plan
-    request.session["last_plan"] = plan_id
+    request.session["expand_once"] = plan_id
     event_date = request.POST.get("event_date")
     request.session["event_date"] = event_date
     log_event(session, "lead_captured")

@@ -265,18 +265,18 @@ function handleCardClick(el) {
   const expand = parentCard.querySelector("[id^='expand-']");
   const url = el.getAttribute("data-url");
 
-  if (parentCard.classList.contains("selected")) {
+  if (expand.innerHTML.trim() !== "") {
 
-  // close expanded content only
+  // close expanded content
   expand.innerHTML = "";
 
-  // restore opacity of all cards
+  // restore all cards
   document.querySelectorAll(".card").forEach(card => {
     card.style.opacity = "1";
   });
 
-  // keep selected state
-  selectedPlan = url;
+  // IMPORTANT: prevent reopen on date change
+  selectedPlan = null;
 
   return;
 }
@@ -306,16 +306,17 @@ window.onload = function () {
   if (dateInput && dateInput.value) {
     hideFakeDate();
     onDateSelected();
-
-    const lastPlan = "{{ last_plan|default:'' }}";
-
-    if (lastPlan) {
-      setTimeout(() => {
-        const el = document.querySelector(`[data-plan="${lastPlan}"]`);
-        if (el) el.click();
-      }, 400);
-    }
   }
+  
+  const expandOnce = "{{ expand_once|default:'' }}";
+
+if (expandOnce) {
+  setTimeout(() => {
+    const el = document.querySelector(`[data-plan="${expandOnce}"]`);
+    if (el) el.click();
+  }, 400);
+}
+
 };
 
 function cleanPhone(input) {
