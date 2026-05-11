@@ -109,8 +109,14 @@ from .models import DemandSlot
 
 def get_demand_multiplier(event_date):
     slot = DemandSlot.objects.filter(event_date=event_date).first()
-    count = slot.booking_count if slot else 0
-    return 1 + (0.10 * count)
+
+    if not slot:
+        return 1, False
+
+    count = slot.booking_count
+    multiplier = 1 + (0.10 * count)
+
+    return multiplier, True
 
 
 def get_price_calendar(base_price, start_date=None, days=30):
@@ -122,15 +128,16 @@ def get_price_calendar(base_price, start_date=None, days=30):
     for i in range(days):
         d = start_date + timedelta(days=i)
 
-        multiplier = get_demand_multiplier(d)
+        multiplier, is_popular = get_demand_multiplier(d)
         price = int(base_price * multiplier)
 
         calendar.append({
             "date": d,
             "price": price,
-            "price_display": format_price(price),  # 👈 ADD THIS
+            "price_display": format_price(price),
             "bookings": int((multiplier - 1) / 0.1),
-            "is_surge": multiplier > 1
+            "is_surge": multiplier > 1,
+            "is_popular": is_popular,
         })
 
     return calendar

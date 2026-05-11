@@ -95,7 +95,12 @@ def view_plan(request, plan_id):
     # -------------------------
     # DEMAND PRICING
     # -------------------------
-    multiplier = get_demand_multiplier(parsed_date) if parsed_date else 1
+    
+    multiplier, is_popular = (
+    get_demand_multiplier(parsed_date)
+    if parsed_date
+    else (1, False)
+    )
 
     price_value = int(plan["price"] * multiplier)
 
@@ -154,7 +159,8 @@ def view_plan(request, plan_id):
         "repeat_count": current_count,
         "user": session.user,
         "force_capture": force_capture,
-        "is_surge": multiplier > 1
+        "is_surge": multiplier > 1,
+        "is_popular": is_popular
     })
 
 
