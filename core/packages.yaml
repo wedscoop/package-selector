@@ -23,7 +23,7 @@ packages:
         - "Raw Photos"
         - "2 Instagram Reels"
         - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (20-30 Min)"
+        - "Cinematic Wedding Film (30-60 Min)"
         - "2 Wedding Albums (35 Sheets Each)"
         
   2_day_lite:
@@ -47,7 +47,7 @@ packages:
         - "Raw Photos"
         - "2 Instagram Reels"
         - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (20-30 Min)"
+        - "Cinematic Wedding Film (30-60 Min)"
         - "2 Wedding Albums (35 Sheets Each)"
         
   2_day_full:
@@ -71,7 +71,7 @@ packages:
         - "Raw Photos"
         - "2 Instagram Reel"
         - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (20-30 Min)"            
+        - "Cinematic Wedding Film (30-60 Min)"            
         - "2 Wedding Albums (35 Sheets Each)"
         
   3_day_lite:
@@ -100,7 +100,7 @@ packages:
         - "Raw Photos"
         - "2 Instagram Reel"
         - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (20-30 Min)"            
+        - "Cinematic Wedding Film (30-60 Min)"            
         - "2 Wedding Albums (35 Sheets Each)"
         
   3_day_full:
@@ -129,7 +129,7 @@ packages:
         - "Raw Photos"
         - "2 Instagram Reel"
         - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (20-30 Min)"            
+        - "Cinematic Wedding Film (30-60 Min)"            
         - "2 Wedding Albums (35 Sheets Each)"
         
   4_day_lite:
@@ -163,7 +163,7 @@ packages:
         - "Raw Photos"
         - "2 Instagram Reel"
         - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (20-30 Min)"            
+        - "Cinematic Wedding Film (30-60 Min)"            
         - "2 Wedding Albums (35 Sheets Each)"
         
   4_day_full:
@@ -197,6 +197,6 @@ packages:
         - "Raw Photos"
         - "2 Instagram Reel"
         - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (20-30 Min)"
+        - "Cinematic Wedding Film (30-60 Min)"
         - "2 Wedding Albums (35 Sheets Each)"
         
