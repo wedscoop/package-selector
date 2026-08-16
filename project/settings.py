@@ -1,113 +1,113 @@
-import os
-from pathlib import Path
+    import os
+    from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-STATIC_URL = '/static/'
-SECRET_KEY = "dev-key"
-DEBUG = False
-ALLOWED_HOSTS = ["*"]
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    STATIC_URL = '/static/'
+    SECRET_KEY = "dev-key"
+    DEBUG = False
+    ALLOWED_HOSTS = ["*"]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
 
-# -------------------------
-# APPS
-# -------------------------
-INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "core",
-]
+    # -------------------------
+    # APPS
+    # -------------------------
+    INSTALLED_APPS = [
+        "django.contrib.admin",
+        "django.contrib.auth",
+        "django.contrib.contenttypes",
+        "django.contrib.sessions",
+        "django.contrib.messages",
+        "django.contrib.staticfiles",
+        "core",
+    ]
 
-# -------------------------
-# MIDDLEWARE
-# -------------------------
-MIDDLEWARE = [
-    "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-]
+    # -------------------------
+    # MIDDLEWARE
+    # -------------------------
+    MIDDLEWARE = [
+        "django.middleware.security.SecurityMiddleware",
+        "whitenoise.middleware.WhiteNoiseMiddleware",
+        "django.contrib.sessions.middleware.SessionMiddleware",
+        "django.middleware.common.CommonMiddleware",
+        "django.middleware.csrf.CsrfViewMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "django.contrib.messages.middleware.MessageMiddleware",
+    ]
 
-# -------------------------
-# URLS
-# -------------------------
-ROOT_URLCONF = "project.urls"
+    # -------------------------
+    # URLS
+    # -------------------------
+    ROOT_URLCONF = "project.urls"
 
-# -------------------------
-# TEMPLATES
-# -------------------------
-TEMPLATES = [
-    {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
-        "APP_DIRS": True,
-        "OPTIONS": {
-            "context_processors": [
-                "django.template.context_processors.debug",
-                "django.template.context_processors.request",
-                "django.contrib.auth.context_processors.auth",
-                "django.contrib.messages.context_processors.messages",
-            ],
+    # -------------------------
+    # TEMPLATES
+    # -------------------------
+    TEMPLATES = [
+        {
+            "BACKEND": "django.template.backends.django.DjangoTemplates",
+            "DIRS": [BASE_DIR / "templates"],
+            "APP_DIRS": True,
+            "OPTIONS": {
+                "context_processors": [
+                    "django.template.context_processors.debug",
+                    "django.template.context_processors.request",
+                    "django.contrib.auth.context_processors.auth",
+                    "django.contrib.messages.context_processors.messages",
+                ],
+            },
         },
-    },
-]
+    ]
 
-# -------------------------
-# WSGI
-# -------------------------
-WSGI_APPLICATION = "project.wsgi.application"
+    # -------------------------
+    # WSGI
+    # -------------------------
+    WSGI_APPLICATION = "project.wsgi.application"
 
-# -------------------------
-# DATABASE (SQLite)
-# -------------------------
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        #"NAME": BASE_DIR / "db.sqlite3",
-        "NAME": "/app/data/db.sqlite3",
+    # -------------------------
+    # DATABASE (SQLite)
+    # -------------------------
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+            #"NAME": "/app/data/db.sqlite3",
 
+        }
     }
-}
 
 
-# -------------------------
-# TIMEZONE
-# -------------------------
-LANGUAGE_CODE = "en-us"
+    # -------------------------
+    # TIMEZONE
+    # -------------------------
+    LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "Asia/Kolkata"
+    TIME_ZONE = "Asia/Kolkata"
 
-USE_I18N = True
-USE_TZ = True
+    USE_I18N = True
+    USE_TZ = True
 
-# -------------------------
-# STATIC FILES
-# -------------------------
-STATIC_URL = "/static/"
-WHITENOISE_AUTOREFRESH = True
-WHITENOISE_USE_FINDERS = True
+    # -------------------------
+    # STATIC FILES
+    # -------------------------
+    STATIC_URL = "/static/"
+    WHITENOISE_AUTOREFRESH = True
+    WHITENOISE_USE_FINDERS = True
 
-# -------------------------
-# DEFAULT PK FIELD (removes warning)
-# -------------------------
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+    # -------------------------
+    # DEFAULT PK FIELD (removes warning)
+    # -------------------------
+    DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-print("STATIC DIR:", STATICFILES_DIRS)
+    print("STATIC DIR:", STATICFILES_DIRS)
 
-ALLOWED_HOSTS = ["*"]  # temp, we’ll tighten later
+    ALLOWED_HOSTS = ["*"]  # temp, we’ll tighten later
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://package-selector-production.up.railway.app",
-    "https://*.railway.app",
-    "https://app.wedscoop.com",
-    "https://*.wedscoop.com",
-]
+    CSRF_TRUSTED_ORIGINS = [
+        "https://package-selector-production.up.railway.app",
+        "https://*.railway.app",
+        "https://app.wedscoop.com",
+        "https://*.wedscoop.com",
+    ]
