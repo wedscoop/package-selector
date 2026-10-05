@@ -5,26 +5,28 @@ packages:
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
-        events: ["Mehndi", "Sangeet"]
+        events: ["Event 1", "Event 2"]
         team:
             photographers: 3
             cinematographers: 2
             drone: 1
 
       - day: "Day 2"
-        events: ["Haldi", "Wedding"]
+        events: ["Rituals", "Wedding"]
         team:
             photographers: 3
             cinematographers: 2
             drone: 1
     
     deliverables:
-        - "1000+ Edited Photos"
-        - "Raw Photos"
-        - "2 Instagram Reels"
-        - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (30-60 Min)"
-        - "2 Wedding Albums (35 Sheets Each)"
+        - "1000-1500 edited photos"
+        - "Raw photos"
+        - "2 Instagram reels"
+        - "Cinematic highlight video (5-7 min)"
+        - "Cinematic wedding film (60-90 min)"
+        - "Sangeet performance video"
+        - "2 wedding albums (35 Sheets Each)"
+        - "AI photo sharing"   
         
   2_day_lite:
     name: "2 Day Wedding"
@@ -32,23 +34,25 @@ packages:
     description: "Wedding Day + 1 Event"
     days:
       - day: "Day 1"
-        events: ["Sangeet"]
+        events: ["Event 1"]
         team:
             photographers: 2
             cinematographers: 2
       - day: "Day 2"
-        events: ["Haldi", "Wedding"]
+        events: ["Rituals", "Wedding"]
         team:
             photographers: 3
             cinematographers: 2
 
     deliverables:
-        - "1000+ Edited Photos"
-        - "Raw Photos"
-        - "2 Instagram Reels"
-        - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (30-60 Min)"
-        - "2 Wedding Albums (35 Sheets Each)"
+        - "1000-1500 edited photos"
+        - "Raw photos"
+        - "2 Instagram reels"
+        - "Cinematic highlight video (5-7 min)"
+        - "Cinematic wedding film (60-90 min)"
+        - "Sangeet performance video"
+        - "2 wedding albums (35 Sheets Each)"
+        - "AI photo sharing"   
         
   2_day_full:
     name: "2 Day Wedding ++"
@@ -56,23 +60,25 @@ packages:
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
-        events: ["Mehndi", "Sangeet"]
+        events: ["Event 1", "Event 2"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 2"
-        events: ["Haldi", "Wedding"]
+        events: ["Event 3", "Wedding"]
         team:
             photographers: 3
             cinematographers: 2
 
     deliverables:
-        - "1000+ Edited Photos"
-        - "Raw Photos"
-        - "2 Instagram Reel"
-        - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (30-60 Min)"            
-        - "2 Wedding Albums (35 Sheets Each)"
+        - "1000-1500 edited photos"
+        - "Raw photos"
+        - "2 Instagram reels"
+        - "Cinematic highlight video (5-7 min)"
+        - "Cinematic wedding film (60-90 min)"
+        - "Sangeet performance video"
+        - "2 wedding albums (35 Sheets Each)"
+        - "AI photo sharing"   
         
   3_day_lite:
     name: "3 Day Wedding"
@@ -80,28 +86,30 @@ packages:
     description: "Wedding Day + 2 Events"
     days:
       - day: "Day 1"
-        events: ["Mehndi"]
+        events: ["Event 1"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 2"
-        events: ["Sangeet"]
+        events: ["Event 2"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 3"
-        events: ["Haldi", "Wedding"]
+        events: ["Rituals", "Wedding"]
         team:
             photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "1000+ Edited Photos"
-        - "Raw Photos"
-        - "2 Instagram Reel"
-        - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (30-60 Min)"            
-        - "2 Wedding Albums (35 Sheets Each)"
+        - "1000-1500 edited photos"
+        - "Raw photos"
+        - "2 Instagram reels"
+        - "Cinematic highlight video (5-7 min)"
+        - "Cinematic wedding film (60-90 min)"
+        - "Sangeet performance video"
+        - "2 wedding albums (35 Sheets Each)"
+        - "AI photo sharing"   
         
   3_day_full:
     name: "3 Day Wedding ++"
@@ -109,28 +117,30 @@ packages:
     description: "Wedding Day + 3 Events"
     days:
       - day: "Day 1"
-        events: ["Cocktail"]
+        events: ["Event 1"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 2"
-        events: ["Mehndi","Sangeet"]
+        events: ["Event 2","Event 3"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 3"
-        events: ["Haldi", "Wedding"]
+        events: ["Rituals", "Wedding"]
         team:
             photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "1000+ Edited Photos"
-        - "Raw Photos"
-        - "2 Instagram Reel"
-        - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (30-60 Min)"            
-        - "2 Wedding Albums (35 Sheets Each)"
+        - "1000-1500 edited photos"
+        - "Raw photos"
+        - "2 Instagram reels"
+        - "Cinematic highlight video (5-7 min)"
+        - "Cinematic wedding film (60-90 min)"
+        - "Sangeet performance video"
+        - "2 wedding albums (35 Sheets Each)"
+        - "AI photo sharing"   
         
   4_day_lite:
     name: "4 Day Wedding"
@@ -138,33 +148,35 @@ packages:
     description: "Wedding Day + 3 Events"
     days:
       - day: "Day 1"
-        events: ["Mehndi"]
+        events: ["Event 1"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 2"
-        events: ["Cocktail"]
+        events: ["Event 2"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 3"
-        events: ["Sangeet"]
+        events: ["Event 3"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 4"
-        events: ["Haldi", "Wedding"]
+        events: ["Rituals", "Wedding"]
         team:
             photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "1000+ Edited Photos"
-        - "Raw Photos"
-        - "2 Instagram Reel"
-        - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (30-60 Min)"            
-        - "2 Wedding Albums (35 Sheets Each)"
+        - "1000-1500 edited photos"
+        - "Raw photos"
+        - "2 Instagram reels"
+        - "Cinematic highlight video (5-7 min)"
+        - "Cinematic wedding film (60-90 min)"
+        - "Sangeet performance video"
+        - "2 wedding albums (35 Sheets Each)"
+        - "AI photo sharing"   
         
   4_day_full:
     name: "4 Day Wedding ++"
@@ -172,31 +184,32 @@ packages:
     description: "Wedding Day + 4 Events"
     days:
       - day: "Day 1"
-        events: ["Mehndi"]
+        events: ["Event 1"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 2"
-        events: ["Cocktail"]
+        events: ["Event 2"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 3"
-        events: ["Welcome Lunch", "Sangeet"]
+        events: ["Event 3", "Event 4"]
         team:
             photographers: 2
             cinematographers: 2        
       - day: "Day 4"
-        events: ["Haldi", "Wedding"]
+        events: ["Rituals", "Wedding"]
         team:
             photographers: 3
             cinematographers: 2 
 
     deliverables:
-        - "1000+ Edited Photos"
-        - "Raw Photos"
-        - "2 Instagram Reel"
-        - "Cinematic Teaser (3-5 Min)"
-        - "Cinematic Wedding Film (30-60 Min)"
-        - "2 Wedding Albums (35 Sheets Each)"
-        
+        - "1000-1500 edited photos"
+        - "Raw photos"
+        - "2 Instagram reels"
+        - "Cinematic highlight video (5-7 min)"
+        - "Cinematic wedding film (60-90 min)"
+        - "Sangeet performance video"
+        - "2 wedding albums (35 Sheets Each)"
+        - "AI photo sharing"        
